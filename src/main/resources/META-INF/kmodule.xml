@@ -2,6 +2,10 @@
 <kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://www.drools.org/xsd/kmodule">
 
+    <!-- Атрибут packages - это путь к каталогу ресурсов, в котором находится файл DRL.
+    Пакет в файле drl необязательно должен совпадать с пакетом здесь. Несколько пакетов разделяются запятыми.
+    По умолчанию проверяются все файлы правил (включая подкаталоги) в каталоге ресурсов.
+    -->
     <kbase name="rules" packages="rules">
         <ksession name="rulesSession"/>
     </kbase>

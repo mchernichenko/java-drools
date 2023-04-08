@@ -18,7 +18,8 @@
 		<java.version>17</java.version>
 		<lombok.version>1.18.26</lombok.version>
 		<kie-ci.version>8.36.0.Final</kie-ci.version>
-		<drools-xml-support.version>8.36.0.Final</drools-xml-support.version>
+	<!--	<drools-xml-support.version>8.36.0.Final</drools-xml-support.version>-->
+		<kie-maven-plugin.version>8.36.0.Final</kie-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -39,11 +40,11 @@
 			<version>${kie-ci.version}</version>
 		</dependency>
 
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-xml-support</artifactId>
-			<version>${drools-xml-support.version}}</version>
-		</dependency>
+			<version>${drools-xml-support.version}</version>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -58,6 +59,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.kie</groupId>
+				<artifactId>kie-maven-plugin</artifactId>
+				<version>${kie-maven-plugin.version}</version>
+				<extensions>true</extensions>
 			</plugin>
 		</plugins>
 	</build>

@@ -33,6 +33,7 @@ public class Controller {
         return test;
     }
 
+    // Пример с использованием правил Drools
     @GetMapping("/getSlaWithDrool")
     public Test gatDroolSla(@RequestParam String type) {
         Test test = new Test();
