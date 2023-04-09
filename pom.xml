@@ -18,7 +18,7 @@
 		<java.version>17</java.version>
 		<lombok.version>1.18.26</lombok.version>
 		<kie-ci.version>8.36.0.Final</kie-ci.version>
-	<!--	<drools-xml-support.version>8.36.0.Final</drools-xml-support.version>-->
+		<drools-xml-support.version>8.36.0.Final</drools-xml-support.version>
 		<kie-maven-plugin.version>8.36.0.Final</kie-maven-plugin.version>
 	</properties>
 
@@ -40,11 +40,12 @@
 			<version>${kie-ci.version}</version>
 		</dependency>
 
-	<!--	<dependency>
+		<!-- для обработки kmodule.xml-->
+		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-xml-support</artifactId>
 			<version>${drools-xml-support.version}</version>
-		</dependency>-->
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
