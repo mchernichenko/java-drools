@@ -1,0 +1,68 @@
+import mch.javadrools.model.TaxiRide;
+import mch.javadrools.model.Fare;
+import java.util.*;
+
+global mch.javadrools.model.Fare rideFare;
+dialect  "mvel"
+/*
+    Тариф расчёта стоимости:
+        1. Обычный тариф
+            до 10км фиксированная сумма = 70р
+            от 10-100км = 70 руб + 2 руб/км.
+            от 100км = 70 руб + 1,5 руб/км.
+        2. Ночной тариф
+            до 10км фиксированная сумма =  100р
+            от 10-100 =  100 руб + 3 руб/км.
+            от 100км = 100 руб + 2,5 руб/км.
+*/
+
+rule "Calculate Taxi Fare - Обычный тариф до 10км фиксированная сумма = 70р"
+    when
+        taxiRideInstance:TaxiRide(isNightSurcharge == false && distanceInMile < 10);
+    then
+       	rideFare.setNightSurcharge(0);  // наценка
+       	rideFare.setRideFare(70);
+end
+
+rule "Calculate Taxi Fare - Ночной тариф до 10км фиксированная сумма = 100р"
+    when
+        taxiRideInstance:TaxiRide(isNightSurcharge == true && distanceInMile < 10);
+    then
+       	rideFare.setNightSurcharge(30);
+       	rideFare.setRideFare(70);
+end
+
+
+rule "Calculate Taxi Fare - Scenario 3"
+    when
+        taxiRideInstance:TaxiRide(isNightSurcharge == false && distanceInMile >= 10 && distanceInMile < 100);
+    then
+       	rideFare.setNightSurcharge(0);
+       	rideFare.setRideFare(70+(2*taxiRideInstance.getDistanceInMile()));
+end
+
+
+rule "Calculate Taxi Fare - Scenario 4"
+    when
+        taxiRideInstance:TaxiRide(isNightSurcharge == true && distanceInMile >= 10 && distanceInMile < 100);
+    then
+       	rideFare.setNightSurcharge(30+taxiRideInstance.getDistanceInMile());
+       	rideFare.setRideFare(70+(2*taxiRideInstance.getDistanceInMile()));
+end
+
+
+rule "Calculate Taxi Fare - Scenario 5"
+    when
+        taxiRideInstance:TaxiRide(isNightSurcharge == false && distanceInMile >= 100);
+    then
+       	rideFare.setNightSurcharge(0);
+       	rideFare.setRideFare(70+(1.5*taxiRideInstance.getDistanceInMile()));
+end
+
+rule "Calculate Taxi Fare - Scenario 6"
+    when
+        taxiRideInstance:TaxiRide(isNightSurcharge == true && distanceInMile >= 100);
+    then
+       	rideFare.setNightSurcharge(30+taxiRideInstance.getDistanceInMile());
+       	rideFare.setRideFare(70+(1.5*taxiRideInstance.getDistanceInMile()));
+end

@@ -12,11 +12,11 @@ public class JavaDroolsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JavaDroolsApplication.class, args);
 	}
-
+/*
 	@Bean
 	public KieContainer kieContainer() {
 		return KieServices.Factory.get().getKieClasspathContainer();
-	}
+	}*/
 }
 
 
