@@ -18,6 +18,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Тесты для drools-правил описанных в resources/TaxiFareRule.drl
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TaxiFareCalculatorServiceIntegrationTest {
