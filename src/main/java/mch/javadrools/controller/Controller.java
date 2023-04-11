@@ -9,6 +9,7 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,10 +27,10 @@ public class Controller {
     }
 
     @PostMapping("/calcTaxiFare")
-    public String calcTaxiFare(@RequestBody TaxiRide taxiRide) {
+    public ResponseEntity<Fare> calcTaxiFare(@RequestBody TaxiRide taxiRide) {
         Fare rideFare = new Fare();
         Long totalFire = taxiFareCalculatorService.calculateFare(taxiRide, rideFare);
-        return  "!! RIDE FARE !! " + totalFire.toString();
+        return ResponseEntity.ok().body(rideFare);
     }
 
     @GetMapping("/getSla")
